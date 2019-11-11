@@ -3,7 +3,12 @@
 		<title>Transform_PostGIS</title>
 		
 		<script type="text/javascript">
-			function info(){
+			function geragjs(i){
+				for (var j = 0; j < i; j++){
+					var campo = document.getElementById('campo').checked;
+					var tipo = document.getElementById('tipo').checked;
+					console.log(campo, tipo, j);
+				}
 				//window.open("http://localhost:3000/info");
 			}
 		</script>
@@ -25,13 +30,18 @@
 						for(var i = 0; i < list.length; i++) {
 							var nome = list[i].nome;
 							var tipo = list[i].tipo;
-			
+							
+							vetor = JSON.stringify({"campo":nome, "tipo":tipo, "id":i});
+							//console.log(vetor);
 					%>
 							<tr>
-								<td><%= nome %></td>	
+								<td><input type="checkbox" id='campo<%= i;%>'> <%= nome %></td>	
 								<td><%= tipo %></td>								
 							</tr>
-					<% 	} 	%>
+					<% 	
+						} 	
+					%>
+						<tr> <td align='center' colspan=2> <button onclick="geragjs(<%= i;%>);"> GeoJSON </button> </td> </tr>
 				<tbody>
 			</table>		
 		</div>
