@@ -3,13 +3,22 @@
 		<title>Transform_PostGIS</title>
 		
 		<script type="text/javascript">
-			function geragjs(i){
-				for (var j = 0; j < i; j++){
-					var campo = document.getElementById('campo').checked;
-					var tipo = document.getElementById('tipo').checked;
-					console.log(campo, tipo, j);
+			var vet_tab = [];
+			
+			function geragjs(param){
+				var status = param.status;
+				//console.log(status);
+				if (typeof status === "undefined"){
+					var campo = param.campo;
+					var tipo = param.tipo;
+					var id = param.id;			
+					
+					vet_tab.push([id,campo,tipo]);					
+					console.log(vet_tab);
+				}else{
+					console.log(vet_tab);
+					//window.open("http://localhost:3000/geojson/"+tabela+"/"+geometria+"/"+srid+"/"+tipo);
 				}
-				//window.open("http://localhost:3000/info");
 			}
 		</script>
 	</head>
@@ -34,14 +43,15 @@
 							vetor = JSON.stringify({"campo":nome, "tipo":tipo, "id":i});
 							//console.log(vetor);
 					%>
-							<tr>
-								<td><input type="checkbox" id='campo<%= i;%>'> <%= nome %></td>	
-								<td><%= tipo %></td>								
-							</tr>
+						<tr>
+							<td><input type="checkbox" id='campo<%= i;%>' onclick="geragjs(<%= vetor;%>)"> <%= nome %></td>	
+							<td><%= tipo %></td>								
+						</tr>
 					<% 	
-						} 	
+						}
+						var status = JSON.stringify({"status":tabela});
 					%>
-						<tr> <td align='center' colspan=2> <button onclick="geragjs(<%= i;%>);"> GeoJSON </button> </td> </tr>
+						<tr> <td align='center' colspan=2> <button onclick="geragjs(<%= status %>);"> GeoJSON </button> </td> </tr>
 				<tbody>
 			</table>		
 		</div>
