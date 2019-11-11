@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Transform_PostGIS</title>
+		
+		<script type="text/javascript">
+			function info(){
+				//window.open("http://localhost:3000/info");
+			}
+		</script>
+	</head>
+	<body>
+		<div align='center'>
+			<h1>LISTA DAS TABELAS E SRID</h1>
+			<% 	var tabela = list[0].tabela; %>
+			
+			<h3> NOME DA TABELA: <%= tabela %>	</h3>
+			<p>
+			<table border='1'>
+				<thead>
+					<th>CAMPO</th>
+					<th>TIPO</th>
+				</thead>
+				<tbody>
+					<% 
+						for(var i = 0; i < list.length; i++) {
+							var nome = list[i].nome;
+							var tipo = list[i].tipo;
+			
+					%>
+							<tr>
+								<td><%= nome %></td>	
+								<td><%= tipo %></td>								
+							</tr>
+					<% 	} 	%>
+				<tbody>
+			</table>		
+		</div>
+	<body>
+<html>

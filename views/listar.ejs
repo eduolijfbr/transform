@@ -1,0 +1,65 @@
+<html>
+	<head>
+		<title>Transform_PostGIS</title>
+		
+		<script type="text/javascript">
+			function info(param){
+				var tabela = param.tabela;
+				var geometria = param.geometria;
+				var srid = param.srid;
+				var tipo = param.tipo;
+				console.log(param);
+				window.open("http://localhost:3000/info/"+tabela+"/"+geometria+"/"+srid+"/"+tipo);
+			}
+		</script>
+	</head>
+	<body>
+		<div align='center'>
+			<h1>LISTA DAS TABELAS E SRID</html>
+			<p>
+			<table border='1'>
+				<thead>
+					<th>TABELA</th>
+					<th>GEOM</th>
+					<th>SRID</th>
+					<th>TIPO</th>
+					<th>INFO</th>
+				</thead>
+				<tbody>
+					<% 
+						for(var i = 0; i < list.length; i++) {
+						
+							var vetor = [];
+							var tabela = list[i].tabela;
+							var geometria = list[i].geometria;
+							var srid = list[i].srid; 
+							var tipo = list[i].tipo;
+			
+							var string_srid;
+							switch (srid){
+								case 4326:
+									string_srid = 'WGS 84';
+									break;
+								case 29193:
+									string_srid = 'SAD 69';
+									break
+								case 4674:
+									string_srid = 'SIRGAS 2000';
+									break
+							}
+							vetor = JSON.stringify({"tabela":tabela, "geometria":geometria, "srid":srid, "tipo":tipo});
+							//console.log(vetor);
+					%>
+							<tr>
+								<td><%= tabela %></td>
+								<td><%= geometria %></td>
+								<td><%= srid %></td>
+								<td><%= tipo %></td>
+								<td> <button onclick="info(<%= vetor %>);"> VER </button></td>
+							</tr>
+					<% 	} 	%>
+				<tbody>
+			</table>		
+		</div>
+	<body>
+<html>

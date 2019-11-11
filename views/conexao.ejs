@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>Transform_PostGIS</title>
+		
+		<script type="text/javascript">
+			function login(){
+				var user = document.getElementById('user').value;
+				var host = document.getElementById('host').value;
+				var database = document.getElementById('database').value;
+				var password = document.getElementById('password').value;
+				var porta = document.getElementById('porta').value;
+				
+				// PRIMEIRA IDEIA PARA A CONEXAO...
+				// TEM QUE ENVIAR COMO POST POR CAUSA DA SENHA...
+	
+				window.open("http://localhost:3000/listar/"+user+"/"+host+"/"+database+"/"+password+"/"+porta);
+			}
+		</script>
+	</head>
+	<body>
+		<div align='center'>
+			<h1>CRIAR CONEXÃO</html>
+			<p>
+			<table border='1'>
+				<tbody>
+					<tr>
+						<td>USER:</td><td><input type='text' id='user' value='postgres'/></td>	
+					</tr>
+					<tr>
+						<td>HOST:</td><td><input type='text' id='host' value='localhost'/></td>					
+					</tr>
+					<tr>
+						<td>DATABASE:</td><td><input type='text' id='database' value='dbSOGEO'/></td>
+					</tr>
+					<tr>
+						<td>PASSWORD:</td><td><input type='password' id='password'  value='edufis76'/></td>
+					</tr>
+					<tr>
+						<td>PORT:</td><td><input type='text' id='porta' value='5432'/></td>
+					</tr>
+					<tr>
+						<td align='center' colspan='2'> <button onclick="login();"> CONNECT </button> </td>
+					</tr>
+				<tbody>
+			</table>	
+		</div>
+	<body>
+<html>
